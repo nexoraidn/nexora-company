@@ -22,8 +22,21 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  security:
+    name: Security Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run NEXORA Security Check
+        run: python3 scripts/security-check.py
+
+  # Deploy only after Security Check passes
   deploy:
+    needs: security
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
