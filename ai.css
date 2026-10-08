@@ -1,0 +1,556 @@
+/* NEXORA AI — Intelligence in Motion */
+
+body:has(.hero) {
+  background:
+    radial-gradient(circle at 85% 18%, rgba(59, 130, 246, 0.18), transparent 30%),
+    radial-gradient(circle at 15% 55%, rgba(37, 99, 235, 0.08), transparent 32%),
+    #050914;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  right: -90px;
+  top: 80px;
+  border: 1px solid rgba(79, 140, 255, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 80px rgba(59, 130, 246, 0.12);
+  transform: rotate(-28deg) scaleX(1.45);
+  animation: aiOrbit 18s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 55px;
+  top: 245px;
+  width: 145px;
+  height: 145px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(141, 181, 255, 0.6);
+  border-radius: 30%;
+  background:
+    url("nexora-ai.png") center / 78px 78px no-repeat,
+    linear-gradient(145deg, #17356d, #081225);
+  background-blend-mode: screen, normal;
+  color: #f4f7ff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+  box-shadow:
+    0 0 45px rgba(59, 130, 246, 0.25),
+    inset 0 0 30px rgba(59, 130, 246, 0.16);
+  animation: aiPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.vision-card,
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(141, 181, 255, 0.13);
+  background: linear-gradient(
+    145deg,
+    rgba(18, 32, 58, 0.7),
+    rgba(7, 14, 29, 0.8)
+  );
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.vision-card:hover,
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79, 140, 255, 0.55);
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.22);
+}
+
+.status.development {
+  color: #8db5ff;
+  text-shadow: 0 0 18px rgba(79, 140, 255, 0.3);
+}
+
+@keyframes aiOrbit {
+  from {
+    transform: rotate(-28deg) scaleX(1.45);
+  }
+
+  to {
+    transform: rotate(332deg) scaleX(1.45);
+  }
+}
+
+@keyframes aiPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 45px rgba(59, 130, 246, 0.25),
+      inset 0 0 30px rgba(59, 130, 246, 0.16);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 0 75px rgba(59, 130, 246, 0.42),
+      inset 0 0 40px rgba(59, 130, 246, 0.25);
+  }
+}
+
+@media (max-width: 800px) {
+  .hero::before {
+    width: 280px;
+    height: 280px;
+    right: -125px;
+    top: 250px;
+  }
+
+  .hero::after {
+    right: 35px;
+    top: 320px;
+    width: 115px;
+    height: 115px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero::before {
+    right: -155px;
+    top: 300px;
+  }
+
+  .hero::after {
+    right: 20px;
+    top: 355px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+
+  .vision-card,
+  .project-card {
+    transition: none;
+  }
+}
+
+/* Fix visual layer */
+.hero::before,
+.hero::after {
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile layout refinement */
+@media (max-width: 800px) {
+  .back-link {
+    display: block;
+    margin-bottom: 55px;
+  }
+
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 330px;
+  }
+
+  .hero::before {
+    width: 270px;
+    height: 270px;
+    top: auto;
+    bottom: 45px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) scaleX(1.25);
+  }
+
+  .hero::after {
+    width: 125px;
+    height: 125px;
+    top: auto;
+    bottom: 115px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .back-link {
+    margin-bottom: 45px;
+  }
+
+  .hero {
+    padding-top: 65px;
+    padding-bottom: 310px;
+  }
+
+  .hero::before {
+    bottom: 35px;
+  }
+
+  .hero::after {
+    bottom: 105px;
+  }
+}
+
+/* NEXORA AI — Signal Intelligence Panel */
+.ai-signal-panel {
+  width: min(680px, 100%);
+  margin-top: 42px;
+  padding: 18px;
+  border: 1px solid rgba(141, 181, 255, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(16, 35, 70, 0.72),
+    rgba(5, 12, 27, 0.7)
+  );
+  box-shadow:
+    0 0 45px rgba(37, 99, 235, 0.08),
+    inset 0 0 35px rgba(59, 130, 246, 0.04);
+  animation: panelFloat 7s ease-in-out infinite;
+}
+
+.signal-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  color: var(--blue-light);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.signal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #65aaff;
+  box-shadow: 0 0 14px rgba(101, 170, 255, 0.9);
+  animation: signalPulse 2s ease-in-out infinite;
+}
+
+.signal-live {
+  margin-left: auto;
+  color: #7dd3fc;
+  font-size: 0.62rem;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.signal-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(141, 181, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(7, 15, 32, 0.65);
+}
+
+.signal-label {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--blue-light);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.signal-card strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.signal-card small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+@keyframes panelFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes signalPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (max-width: 600px) {
+  .ai-signal-panel {
+    margin-top: 32px;
+    padding: 14px;
+  }
+
+  .signal-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .signal-card {
+    padding: 12px;
+  }
+
+  .signal-live {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-signal-panel,
+  .signal-dot {
+    animation: none;
+  }
+}
+
+/* NEXORA AI — What We Build */
+.ai-section-intro {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 22px;
+  margin-bottom: 38px;
+}
+
+.ai-build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.ai-build-card {
+  position: relative;
+  min-height: 285px;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(141, 181, 255, 0.16);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(18, 37, 75, 0.75), rgba(5, 12, 27, 0.9));
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.ai-build-card::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: -80px;
+  top: -80px;
+  border: 1px solid rgba(79, 140, 255, 0.28);
+  border-radius: 50%;
+}
+
+.ai-build-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(141, 181, 255, 0.55);
+  background:
+    linear-gradient(145deg, rgba(24, 52, 105, 0.85), rgba(5, 12, 27, 0.95));
+}
+
+.ai-card-number {
+  color: var(--blue-light);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.ai-card-icon {
+  margin-top: 28px;
+  color: #8db5ff;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.ai-build-card h3 {
+  margin-top: 22px;
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.ai-build-card p {
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.ai-card-line {
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin-top: 24px;
+  background: var(--blue);
+  box-shadow: 0 0 14px rgba(79, 140, 255, 0.55);
+}
+
+@media (max-width: 800px) {
+  .ai-build-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .ai-build-card {
+    min-height: auto;
+    padding: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-build-card {
+    transition: none;
+  }
+}
+
+/* NEXORA AI — Status */
+.ai-status-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 560px;
+  margin-top: 32px;
+  padding: 17px 20px;
+  border: 1px solid rgba(141, 181, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(10, 22, 48, 0.65);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.ai-status-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #65d6a0;
+  box-shadow: 0 0 12px rgba(101, 214, 160, 0.6);
+}
+
+.ai-status-active {
+  margin-left: auto;
+  color: #65d6a0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .ai-status-line {
+    gap: 9px;
+    padding: 15px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-status-line {
+    transition: none;
+  }
+}
+
+/* NEXORA AI — Footer refinement */
+.footer-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+}
+
+.footer-copy strong {
+  color: var(--text);
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.footer-copy p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid rgba(141, 181, 255, 0.12);
+}
+
+@media (max-width: 480px) {
+  .footer-main {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+/* NEXORA AI — Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

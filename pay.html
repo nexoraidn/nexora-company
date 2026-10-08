@@ -1,0 +1,1259 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="NexGo — Platform transaksi digital dan PPOB dari Nexora Nusantara Technology."
+  >
+
+  <meta name="theme-color" content="#06111f">
+
+  <title>NexGo | Digital Transaction Platform</title>
+
+  <style>
+    :root {
+      --background: #06111f;
+      --background-soft: #0a192b;
+      --surface: #0d2035;
+      --surface-light: #122b46;
+      --text: #f4f8ff;
+      --text-muted: #9bafc8;
+      --primary: #368cff;
+      --primary-light: #7abaff;
+      --success: #3bd5a2;
+      --border: rgba(151, 177, 207, 0.16);
+      --radius-large: 28px;
+      --radius-medium: 18px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(
+          circle at 85% 5%,
+          rgba(54, 140, 255, 0.14),
+          transparent 32%
+        ),
+        linear-gradient(
+          180deg,
+          #06111f 0%,
+          #08182a 48%,
+          #06111f 100%
+        );
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 17, 31, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+.brand-logo {
+  width: 150px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-text strong {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text small {
+      margin-top: 5px;
+      color: var(--text-muted);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-button {
+      padding: 10px 16px;
+      border: 1px solid rgba(122, 186, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(54, 140, 255, 0.1);
+      color: var(--text) !important;
+      white-space: nowrap;
+    }
+
+    .hero {
+      padding: 112px 0 108px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow,
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-light);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .section-label::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--primary-light);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin-top: 24px;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -2.8px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--primary-light);
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-top: 28px;
+      color: var(--text-muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .app-action {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 2px;
+    }
+
+    .app-action span {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 23px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #368cff, #2168d4);
+      color: #ffffff;
+      box-shadow: 0 12px 32px rgba(54, 140, 255, 0.22);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--text);
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      color: #7188a5;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 740px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading h2 {
+      margin-top: 18px;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.18;
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading h2 span {
+      color: var(--primary-light);
+    }
+
+    .section-heading p {
+      margin-top: 22px;
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .intro-card {
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: rgba(13, 32, 53, 0.65);
+    }
+
+    .intro-card h3 {
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .intro-card p {
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .stats-heading {
+      margin-top: 70px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(66, 153, 225, 0.14), transparent 55%),
+        rgba(13, 32, 53, 0.65);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 0 0 rgba(66, 153, 225, 0);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      width: 160px;
+      height: 160px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(66, 153, 225, 0.12);
+      filter: blur(35px);
+      pointer-events: none;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -35%;
+      width: 28%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(120, 190, 255, 0.08),
+        transparent
+      );
+      transform: skewX(-18deg);
+      pointer-events: none;
+      animation: statScan 5s ease-in-out infinite;
+    }
+
+    @keyframes statScan {
+      0%, 45% {
+        left: -35%;
+      }
+      75%, 100% {
+        left: 120%;
+      }
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(66, 153, 225, 0.45);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 12px 32px rgba(0, 0, 0, 0.22),
+        0 0 28px rgba(66, 153, 225, 0.10);
+    }
+
+    .stat-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary-light);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+    }
+
+    .stat-card p {
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      min-height: 235px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(13, 32, 53, 0.94),
+          rgba(8, 18, 33, 0.94)
+        );
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(122, 186, 255, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(54, 140, 255, 0.12);
+      color: var(--primary-light);
+      font-size: 21px;
+    }
+
+    .service-card h3 {
+      margin-top: 22px;
+      font-size: 18px;
+    }
+
+    .service-card p {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .service-status {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--success);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .service-status.upcoming {
+      color: var(--primary-light);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: rgba(13, 32, 53, 0.62);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(54, 140, 255, 0.14);
+      color: var(--primary-light);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .step-card h3 {
+      margin-top: 22px;
+      font-size: 19px;
+    }
+
+    .step-card p {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .feature-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(18, 43, 70, 0.9),
+          rgba(9, 24, 42, 0.9)
+        );
+    }
+
+    .feature-panel h3 {
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .feature-panel p {
+      margin-top: 16px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      flex: 0 0 auto;
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 25px 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      background: rgba(13, 32, 53, 0.6);
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .faq-item p {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .cta {
+      padding: 95px 0;
+    }
+
+    .cta-box {
+      padding: 64px 40px;
+      border: 1px solid rgba(122, 186, 255, 0.24);
+      border-radius: var(--radius-large);
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(54, 140, 255, 0.2),
+          transparent 35%
+        ),
+        linear-gradient(135deg, #102c4b, #0a192c);
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    .cta-box p {
+      max-width: 650px;
+      margin: 22px auto 0;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .cta-box .btn {
+      margin-top: 30px;
+    }
+
+    .site-footer {
+      padding: 38px 0 30px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-content p {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+    @media (max-width: 900px) {
+      .hero {
+        padding: 80px 0;
+      }
+
+      .services-grid,
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .intro-grid,
+      .feature-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+
+      .nav-links {
+        gap: 8px;
+        font-size: 10px;
+      }
+
+      .nav-button {
+        padding: 8px 10px;
+      }
+
+    .brand-text strong {
+        font-size: 13px;
+      }
+
+      .brand-logo {
+        width: 85px;
+        height: auto;
+        flex-shrink: 0;
+      }
+
+      .brand-text small {
+        font-size: 8px;
+      }
+
+      .hero {
+        padding: 65px 0 70px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+        letter-spacing: -1.8px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 32px;
+      }
+
+      .section-heading h2 {
+        font-size: 34px;
+      }
+
+      .section-heading p {
+        font-size: 14px;
+      }
+
+      .intro-grid,
+      .services-grid,
+      .steps-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-card,
+      .service-card,
+      .step-card,
+      .stat-card {
+        padding: 25px;
+      }
+
+      .feature-panel {
+        padding: 28px 24px;
+      }
+
+      .cta {
+        padding: 70px 0;
+      }
+
+      .cta-box {
+        padding: 45px 24px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="index.html" class="brand" aria-label="NexGo">
+
+<img src="nexgo-logo.png" alt="NexGo" class="brand-logo">
+<span class="brand-text"><strong>NexGo</strong></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="#tentang">Tentang</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#cara-memulai">Panduan</a>
+        <a href="#kontak" class="nav-button">Kontak</a>
+        <a href="index.html" class="nav-button">Beranda Utama</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">NexGo</p>
+
+          <h1>
+            Solusi Transaksi Digital
+            <span>dalam Satu Platform.</span>
+          </h1>
+
+          <p class="hero-description">
+            NexGo merupakan platform transaksi digital dan PPOB dari
+            Nexora Nusantara Technology, yang dikembangkan untuk
+            memudahkan berbagai kebutuhan pembayaran secara praktis,
+            cepat, dan terintegrasi.
+          </p>
+
+<div class="hero-actions">
+
+  <div class="app-action">
+    <span>Daftar NexGo:</span>
+
+    <a
+      href="https://nexgo.pusatdigi.com"
+      class="btn btn-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Buka Aplikasi
+    </a>
+  </div>
+
+  <a href="#layanan" class="btn btn-secondary">
+    Jelajahi Layanan
+  </a>
+
+  <a href="#cara-memulai" class="btn btn-secondary">
+    Cara Memulai
+  </a>
+
+</div>
+
+          <p class="hero-note">
+            Satu ekosistem digital untuk berbagai kebutuhan transaksi.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">TENTANG NexGo</p>
+
+          <h2>
+            Infrastruktur Digital untuk
+            <span>Transaksi yang Lebih Efisien.</span>
+          </h2>
+
+          <p>
+            NexGo menghadirkan berbagai layanan transaksi digital dan
+            PPOB dalam satu platform yang dirancang untuk memberikan
+            akses yang praktis, cepat, dan terintegrasi bagi berbagai
+            kebutuhan pembayaran sehari-hari.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <article class="intro-card">
+            <h3>Platform Terintegrasi</h3>
+
+            <p>
+              Menghadirkan berbagai kebutuhan transaksi digital
+              melalui satu ekosistem layanan yang terhubung dan
+              dapat diakses secara praktis.
+            </p>
+          </article>
+
+          <article class="intro-card">
+            <h3>Dirancang untuk Kemudahan</h3>
+
+            <p>
+              Setiap layanan disusun agar proses transaksi dapat
+              dilakukan secara jelas, efisien, dan mudah dipahami
+              oleh pengguna.
+            </p>
+          </article>
+        </div>
+
+        <div class="section-heading stats-heading">
+          <p class="section-label">NexGo DALAM ANGKA</p>
+
+          <h2>
+            Platform yang
+            <span>Terus Bertumbuh.</span>
+          </h2>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <h3 data-count="2500" data-format="number">0</h3>
+            <p>Total Produk</p>
+          </article>
+
+          <article class="stat-card">
+            <h3 data-count="20000" data-format="number">0</h3>
+            <p>Member Aktif</p>
+          </article>
+
+          <article class="stat-card">
+            <h3 data-count="1500000" data-format="million">0</h3>
+            <p>Total Transaksi</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="layanan" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">LAYANAN DIGITAL</p>
+
+          <h2>
+            Berbagai Kebutuhan PPOB
+            <span>dalam Satu Platform.</span>
+          </h2>
+
+          <p>
+            NexGo menyediakan berbagai layanan PPOB dan transaksi
+            digital untuk mendukung kebutuhan pembayaran sehari-hari
+            secara praktis dan mudah diakses.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">P</div>
+            <h3>Pulsa</h3>
+            <p>
+              Pembelian pulsa untuk berbagai kebutuhan komunikasi
+              secara praktis dan efisien.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">D</div>
+            <h3>Paket Data</h3>
+            <p>
+              Pemenuhan kebutuhan internet melalui pembelian
+              paket data digital.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">L</div>
+            <h3>Token Listrik</h3>
+            <p>
+              Pembelian token listrik untuk mendukung kebutuhan
+              energi rumah tangga maupun usaha.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">T</div>
+            <h3>Pembayaran Tagihan</h3>
+            <p>
+              Mendukung pembayaran berbagai tagihan digital
+              melalui satu platform.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">B</div>
+            <h3>Transfer Bank</h3>
+            <p>
+              Layanan transaksi transfer bank untuk mendukung
+              kebutuhan pengiriman dana.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">E</div>
+            <h3>E-Wallet</h3>
+            <p>
+              Mendukung kebutuhan transaksi dan pengisian saldo
+              melalui berbagai layanan dompet digital.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">T</div>
+            <h3>Top Up Digital</h3>
+            <p>
+              Berbagai kebutuhan pengisian saldo dan layanan
+              digital dalam satu akses.
+            </p>
+            <span class="service-status">Tersedia</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">Q</div>
+            <h3>QRIS</h3>
+            <p>
+              Layanan pembayaran QRIS sedang dipersiapkan
+              sebagai bagian dari pengembangan ekosistem NexGo.
+            </p>
+            <span class="service-status upcoming">Segera Hadir</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cara-memulai" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">CARA MEMULAI</p>
+
+          <h2>
+            Akses Layanan dengan
+            <span>Langkah yang Sederhana.</span>
+          </h2>
+
+          <p>
+            Gunakan NexGo untuk menjelajahi layanan yang tersedia
+            dan memulai transaksi sesuai kebutuhan Anda melalui proses
+            yang mudah dipahami.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">01</div>
+
+            <h3>Akses NexGo</h3>
+
+            <p>
+              Buka aplikasi NexGo melalui akses resmi yang
+              disediakan oleh NEXORA Nusantara Technology.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+
+            <h3>Pilih Layanan</h3>
+
+            <p>
+              Tentukan layanan digital yang diperlukan, seperti
+              pulsa, paket data, token listrik, transfer bank,
+              e-wallet, atau layanan pembayaran lainnya.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+
+            <h3>Lengkapi Transaksi</h3>
+
+            <p>
+              Ikuti instruksi pada aplikasi, periksa kembali
+              informasi transaksi, kemudian lanjutkan proses
+              sesuai petunjuk yang tersedia.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="feature-panel">
+          <div>
+            <p class="section-label">EKOSISTEM NEXORA</p>
+
+            <h3>
+              Satu Akses untuk Berbagai
+              Kebutuhan Transaksi Digital.
+            </h3>
+
+            <p>
+              NexGo dikembangkan sebagai bagian dari ekosistem
+              teknologi NEXORA Nusantara Technology untuk menghadirkan
+              layanan digital yang relevan, efisien, dan mudah digunakan.
+            </p>
+          </div>
+
+          <ul class="feature-list">
+            <li>Berbagai layanan PPOB telah tersedia.</li>
+            <li>Transfer bank dan layanan e-wallet.</li>
+            <li>Pembelian pulsa, paket data, dan token listrik.</li>
+            <li>Pembayaran berbagai kebutuhan tagihan digital.</li>
+            <li>Pengembangan layanan QRIS sebagai fitur berikutnya.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">PERTANYAAN UMUM</p>
+
+          <h2>
+            Informasi yang
+            <span>Perlu Anda Ketahui.</span>
+          </h2>
+
+          <p>
+            Berikut beberapa informasi umum mengenai layanan
+            dan penggunaan NexGo.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Apakah seluruh layanan PPOB sudah tersedia?</h3>
+
+            <p>
+              Ya. Layanan utama NexGo telah tersedia dan dapat
+              digunakan, termasuk pulsa, paket data, token listrik,
+              pembayaran tagihan, transfer bank, e-wallet, dan
+              berbagai layanan digital lainnya.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Apakah layanan QRIS sudah tersedia?</h3>
+
+            <p>
+              Layanan QRIS masih dalam tahap pengembangan dan
+              dipersiapkan untuk menjadi bagian dari perluasan
+              ekosistem pembayaran NexGo.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Bagaimana cara menggunakan NexGo?</h3>
+
+            <p>
+              Akses aplikasi NexGo, pilih layanan yang diperlukan,
+              masukkan informasi transaksi secara benar, lalu ikuti
+              instruksi yang tersedia hingga proses selesai.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Apakah NexGo dapat digunakan untuk kebutuhan harian?</h3>
+
+            <p>
+              NexGo dirancang untuk mendukung berbagai kebutuhan
+              transaksi digital sehari-hari melalui layanan pembayaran
+              dan PPOB yang tersedia dalam satu platform.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak" class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>
+            Mulai Kelola Transaksi Digital
+            Anda Bersama NexGo.
+          </h2>
+
+          <p>
+            Jelajahi layanan NexGo dan temukan kemudahan
+            dalam memenuhi berbagai kebutuhan transaksi digital
+            melalui satu platform yang terintegrasi.
+          </p>
+
+          <a href="#layanan" class="btn btn-primary">
+            Lihat Layanan NexGo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>
+        © 2026 NEXORA Nusantara Technology. All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="#tentang">Tentang</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#cara-memulai">Panduan</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+  /* NEXORA STATS COUNT-UP */
+  (() => {
+    const stats = document.querySelectorAll(".stat-card h3[data-count]");
+    if (!stats.length) return;
+
+    const formatNumber = (value) =>
+      Math.floor(value).toLocaleString("id-ID");
+
+    const formatMillion = (value) =>
+      (value / 1000000).toFixed(1).replace(".", ",") + " Juta";
+
+    const animateCount = (element) => {
+      const target = Number(element.dataset.count);
+      const format = element.dataset.format;
+      const duration = 1800;
+      const startTime = performance.now();
+
+      const update = (currentTime) => {
+        const progress = Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+
+        element.textContent =
+          format === "million"
+            ? formatMillion(value)
+            : formatNumber(value);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    const showFinalValues = () => {
+      stats.forEach((element) => {
+        const target = Number(element.dataset.count);
+        element.textContent =
+          element.dataset.format === "million"
+            ? formatMillion(target)
+            : formatNumber(target);
+      });
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      showFinalValues();
+      return;
+    }
+
+    let started = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (started) return;
+
+        if (entries.some((entry) => entry.isIntersecting)) {
+          started = true;
+          stats.forEach(animateCount);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    const statsGrid = document.querySelector(".stats-grid");
+
+    if (statsGrid) {
+      observer.observe(statsGrid);
+    }
+  })();
+</script>
+
+</body>
+</html>

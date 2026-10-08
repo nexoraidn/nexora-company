@@ -1,0 +1,481 @@
+/* NEXORA ENGINE — Neural Infrastructure */
+
+html,
+body {
+  background: #020812 !important;
+  color: #e7f0fb;
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(30, 115, 220, 0.22), transparent 42%),
+    radial-gradient(ellipse at 15% 80%, rgba(12, 65, 145, 0.18), transparent 38%),
+    radial-gradient(ellipse at 90% 65%, rgba(20, 90, 170, 0.16), transparent 40%),
+    linear-gradient(145deg, #020711 0%, #061426 48%, #01050c 100%) !important;
+}
+
+/* Holographic Scan */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(76, 145, 220, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 145, 220, 0.08) 1px, transparent 1px);
+  background-size: 100% 5px; animation: holoScan 12s linear infinite;
+  opacity: 0.6;
+  z-index: -2;
+}
+
+.hero,
+.section,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Engine override: remove AI hero atmosphere */
+.hero::before,
+.hero::after {
+  background: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+
+@keyframes holoScan { from { background-position: 0 0; } to { background-position: 0 100px; } }
+ 
+/* Holographic 3D Perspective */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,210,255,.12) 50%, transparent 100%), repeating-linear-gradient(90deg, transparent 0 70px, rgba(0,180,255,.06) 71px 72px), repeating-linear-gradient(0deg, transparent 0 70px, rgba(0,180,255,.06) 71px 72px);
+  transform: perspective(600px) rotateX(55deg) scale(1.5);
+  transform-origin: center bottom;
+  animation: holoPerspective 18s linear infinite;
+  opacity: .55;
+  z-index: -1;
+}
+@keyframes holoPerspective {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 0 180px, 140px 0, 0 140px; }
+}
+
+/* Research Console v2 */
+.research-console {
+  margin:32px 0;
+  border:1px solid rgba(80,150,255,.3);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(8,18,38,.96),rgba(5,12,26,.92));
+  box-shadow:0 12px 40px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.research-console-header .section-label {
+  margin:0;
+}
+.research-console-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:18px 22px;
+  border-bottom:1px solid rgba(80,150,255,.2);
+  background:rgba(20,45,85,.22);
+}
+.research-status {
+  color:#55d6a5;
+  font-size:11px;
+  letter-spacing:1.5px;
+  font-weight:700;
+}
+/* Research Console v2 — Body */
+.research-console-body {
+  padding:26px 22px;
+}
+.research-prompt {
+  color:#e4efff;
+  font-family:monospace;
+  font-size:14px;
+  margin-bottom:8px;
+}
+.research-hint {
+  color:#8ca5c8;
+  font-size:13px;
+  margin-bottom:22px;
+}
+.research-input-row {
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+}
+.research-input-row input {
+  flex:1;
+  min-width:0;
+  padding:14px 16px;
+  border:1px solid rgba(80,150,255,.35);
+  border-radius:10px;
+  background:rgba(3,9,20,.9);
+  color:#e8f1ff;
+  font:inherit;
+  outline:none;
+}
+/* Research Console v2 — Controls */
+.research-input-row input:focus {
+  border-color:#3b82f6;
+  box-shadow:0 0 0 3px rgba(59,130,246,.15);
+}
+.research-input-row button {
+  min-height:46px;
+  padding:0 20px;
+  border:1px solid rgba(80,150,255,.5);
+  border-radius:10px;
+  background:#1557a8;
+  color:#fff;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:background .2s,transform .2s;
+}
+.research-input-row button:hover {
+  background:#1d6ed1;
+}
+.research-input-row button:active {
+  transform:translateY(1px);
+}
+/* Research Console v2 — Output */
+.research-output {
+  margin-top:20px;
+  padding:18px;
+  min-height:52px;
+  border:1px solid rgba(80,150,255,.18);
+  border-radius:10px;
+  background:rgba(3,9,20,.72);
+  color:#a8c8ef;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.7;
+  overflow-wrap:anywhere;
+}
+@media (max-width:520px) {
+  .research-console-header {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+  }
+  .research-console-body {
+    padding:22px 16px;
+  }
+  .research-input-row {
+    flex-wrap:wrap;
+  }
+  .research-input-row input {
+    flex:1 1 100%;
+  }
+  .research-input-row button {
+    flex:1;
+    min-height:44px;
+    padding:0 12px;
+  }
+}
+/* Research history entries */
+.history-entry {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(80, 150, 255, 0.14);
+}
+
+.history-entry:last-child {
+  border-bottom: none;
+}
+
+.history-number {
+  flex: 0 0 28px;
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.history-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.history-input {
+  color: #e8f1ff;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.history-result {
+  margin-top: 4px;
+  color: #9fc3ed;
+  overflow-wrap: anywhere;
+}
+
+.history-time {
+  margin-top: 6px;
+  color: #6f86a8;
+  font-size: 11px;
+}
+
+.research-info-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color, #2a2a2a);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted, #888);
+}
+
+.research-info-panel span {
+  white-space: nowrap;
+}
+
+/* v3.2.4 — Engine Brand Mark */
+.engine-brand {
+  width: 76px;
+  height: 76px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.engine-brand img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .engine-brand {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+}
+
+/* v3.2.5 — Engine Core Visualization */
+.engine-core-visual {
+  width: 100%;
+  height: 190px;
+  margin: 8px 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.core-network {
+  position: relative;
+  width: 300px;
+  height: 170px;
+}
+
+.core-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76px;
+  height: 76px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(120, 180, 255, 0.55);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(70, 140, 255, 0.16), rgba(10, 15, 30, 0.15) 65%, transparent 70%);
+  box-shadow:
+    0 0 22px rgba(80, 150, 255, 0.18),
+    inset 0 0 18px rgba(80, 150, 255, 0.1);
+}
+
+.core-center strong {
+  position: relative;
+  z-index: 2;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  font-weight: 600;
+}
+
+.core-pulse {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(130, 190, 255, 0.7);
+  border-radius: 50%;
+  animation: engine-core-pulse 2.4s ease-out infinite;
+}
+
+
+.core-node {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(130, 195, 255, 0.9);
+  box-shadow: 0 0 10px rgba(100, 180, 255, 0.65);
+  animation: engine-node-pulse 2s ease-in-out infinite;
+}
+
+.node-1 { left: 20px; top: 32px; }
+.node-2 { right: 22px; top: 30px; }
+.node-3 { left: 4px; top: 102px; }
+.node-4 { right: 5px; top: 104px; }
+.node-5 { left: 72px; top: 145px; }
+.node-6 { right: 74px; top: 145px; }
+
+.core-line {
+  position: absolute;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(100, 175, 255, 0.45),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.line-1 {
+  width: 145px;
+  left: 23px;
+  top: 35px;
+  transform: rotate(25deg);
+}
+
+.line-2 {
+  width: 145px;
+  left: 153px;
+  top: 35px;
+  transform: rotate(155deg);
+}
+
+
+.line-3 {
+  width: 145px;
+  left: 8px;
+  top: 105px;
+  transform: rotate(-20deg);
+}
+
+.line-4 {
+  width: 145px;
+  left: 151px;
+  top: 105px;
+  transform: rotate(200deg);
+}
+
+.line-5 {
+  width: 105px;
+  left: 75px;
+  top: 146px;
+  transform: rotate(-70deg);
+}
+
+.line-6 {
+  width: 105px;
+  left: 151px;
+  top: 146px;
+  transform: rotate(-110deg);
+}
+
+@keyframes engine-core-pulse {
+  0% {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+  }
+
+  70%, 100% {
+    width: 64px;
+    height: 64px;
+    opacity: 0;
+  }
+}
+
+
+@keyframes engine-node-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+
+
+/* v3.2.4 — Final Engine Core configuration */
+.engine-core-visual {
+  height: 130px !important;
+  margin: 0 !important;
+  opacity: 0.95;
+}
+
+@media (max-width: 600px) {
+  .engine-core-visual {
+    height: 120px !important;
+    margin: 0 !important;
+  }
+
+  .core-network {
+    transform: scale(0.82);
+  }
+}
+
+@media (max-width: 480px) {
+  .engine-core-visual {
+    height: 115px !important;
+  }
+
+  .core-network {
+    transform: scale(0.80);
+  }
+}
+
+/* v3.2.4 — Final Engine section spacing */
+.section {
+  padding: 24px 0;
+}
+
+/* v3.2.4 — Tight Engine Core to Live Research transition */
+.research-console {
+  margin-top: 0;
+}
+
+/* v3.2.4 — Final Engine hero spacing */
+.hero {
+  min-height: auto;
+  padding: 48px 0;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    min-height: 0 !important;
+    padding-top: 32px !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 28px !important;
+    padding-bottom: 16px !important;
+  }
+}
