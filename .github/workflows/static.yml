@@ -51,11 +51,15 @@ jobs:
         uses: actions/checkout@v5
       - name: Setup Pages
         uses: actions/configure-pages@v6
+      - name: Prepare public site
+        run: |
+          mkdir -p _site/assets
+          cp index.html pay.html ai.html engine.html style.css ai.css engine.css script.js engine-interaction.js nexgo-logo.png nexora-ai.png nexora-brand.jpg nexora-pay.jpg _site/
+          cp assets/nexora-engine-logo-v3.2.4.png _site/assets/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
