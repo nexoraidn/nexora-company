@@ -50,22 +50,51 @@ if not git or git.stdout.strip() != "true":
 
 tracked = run(["git", "ls-files"])
 untracked = run(["git", "ls-files", "--others", "--exclude-standard"])
+ignored = run([
+    "git", "ls-files", "--others", "--ignored", "--exclude-standard"
+])
 
-files = []
+def collect_files(results):
+    collected = []
 
-if tracked:
-    files.extend(
-        x for x in tracked.stdout.splitlines()
-        if x.strip()
-    )
+    for result in results:
+        if result is None or result.returncode != 0:
+            fail("Gagal mengambil daftar file Git secara lengkap.")
+            return collected
 
-if untracked:
-    files.extend(
-        x for x in untracked.stdout.splitlines()
-        if x.strip()
-    )
+        collected.extend(
+            x for x in result.stdout.splitlines()
+            if x.strip()
+        )
 
-files = sorted(set(files))
+    return sorted(set(collected))
+
+
+files = collect_files((tracked, untracked))
+ignored_files = collect_files((ignored,))
+all_files_for_name_scan = sorted(set(files + ignored_files))
+
+# Detect sensitive filenames in tracked and untracked project files.
+forbidden_patterns = [
+    r"(^|/)\.env($|\.)",
+    r"(^|/).*\.pem$",
+    r"(^|/).*\.key$",
+    r"(^|/).*\.p12$",
+    r"(^|/).*\.pfx$",
+    r"(^|/).*\.keystore$",
+    r"(^|/).*\.sqlite$",
+    r"(^|/).*\.db$",
+    r"(^|/).*id_rsa.*$",
+    r"(^|/).*credentials.*$",
+    r"(^|/).*secret.*$",
+    r"(^|/).*password.*$",
+]
+
+for file in all_files_for_name_scan:
+    for pattern in forbidden_patterns:
+        if re.search(pattern, file, re.IGNORECASE):
+            fail(f"Forbidden/sensitive file terdeteksi: {file}")
+            break
 
 # --------------------------------------------------
 # 3. Secret / credential scan
