@@ -2,6 +2,10 @@
 name: Deploy static content to Pages
 
 on:
+  # Run security checks on pull requests targeting main
+  pull_request:
+    branches: ["main"]
+
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
@@ -37,6 +41,7 @@ jobs:
   # Deploy only after Security Check passes
   deploy:
     needs: security
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
