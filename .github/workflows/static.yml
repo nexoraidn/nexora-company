@@ -56,7 +56,6 @@ jobs:
           mkdir -p _site/assets
           cp index.html pay.html ai.html engine.html style.css ai.css engine.css script.js engine-interaction.js nexgo-logo.png nexora-ai.png nexora-brand.jpg nexora-pay.jpg _site/
           cp assets/nexora-engine-logo-v3.2.4.png _site/assets/
-          printf '%s\n' 'nexoranx.com' > _site/CNAME
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
