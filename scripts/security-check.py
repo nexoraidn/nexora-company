@@ -183,9 +183,9 @@ if workflow.is_file():
     data = workflow.read_text(encoding="utf-8", errors="ignore")
 
     required_workflow_parts = [
-        "actions/checkout@v4",
-        "actions/configure-pages@v5",
-        "actions/upload-pages-artifact@v3",
+        "actions/checkout@v5",
+        "actions/configure-pages@v6",
+        "actions/upload-pages-artifact@v5",
         "actions/deploy-pages@v5",
         "permissions:",
         "contents: read",
