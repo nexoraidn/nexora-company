@@ -868,7 +868,6 @@
         </div>
 
         <div class="section-heading stats-heading">
-          <p class="section-label">NexGo DALAM ANGKA</p>
 
           <h2>
             Platform yang
@@ -876,22 +875,6 @@
           </h2>
         </div>
 
-        <div class="stats-grid">
-          <article class="stat-card">
-            <h3 data-count="2500" data-format="number">0</h3>
-            <p>Total Produk</p>
-          </article>
-
-          <article class="stat-card">
-            <h3 data-count="20000" data-format="number">0</h3>
-            <p>Member Aktif</p>
-          </article>
-
-          <article class="stat-card">
-            <h3 data-count="1500000" data-format="million">0</h3>
-            <p>Total Transaksi</p>
-          </article>
-        </div>
       </div>
     </section>
     <section id="layanan" class="section">
@@ -1176,84 +1159,6 @@
     </div>
   </footer>
 
-
-<script>
-  /* NEXORA STATS COUNT-UP */
-  (() => {
-    const stats = document.querySelectorAll(".stat-card h3[data-count]");
-    if (!stats.length) return;
-
-    const formatNumber = (value) =>
-      Math.floor(value).toLocaleString("id-ID");
-
-    const formatMillion = (value) =>
-      (value / 1000000).toFixed(1).replace(".", ",") + " Juta";
-
-    const animateCount = (element) => {
-      const target = Number(element.dataset.count);
-      const format = element.dataset.format;
-      const duration = 1800;
-      const startTime = performance.now();
-
-      const update = (currentTime) => {
-        const progress = Math.min(
-          (currentTime - startTime) / duration,
-          1
-        );
-
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = target * eased;
-
-        element.textContent =
-          format === "million"
-            ? formatMillion(value)
-            : formatNumber(value);
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      };
-
-      requestAnimationFrame(update);
-    };
-
-    const showFinalValues = () => {
-      stats.forEach((element) => {
-        const target = Number(element.dataset.count);
-        element.textContent =
-          element.dataset.format === "million"
-            ? formatMillion(target)
-            : formatNumber(target);
-      });
-    };
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      showFinalValues();
-      return;
-    }
-
-    let started = false;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (started) return;
-
-        if (entries.some((entry) => entry.isIntersecting)) {
-          started = true;
-          stats.forEach(animateCount);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.35 }
-    );
-
-    const statsGrid = document.querySelector(".stats-grid");
-
-    if (statsGrid) {
-      observer.observe(statsGrid);
-    }
-  })();
-</script>
 
 </body>
 </html>
